@@ -1291,10 +1291,26 @@
     renderChart("Timeline", chart);
   }
 
+  function processOptions(opts) {
+    return Object.keys(opts).reduce(function(obj, key) {
+      if (typeof opts[key] === "object") {
+        obj[key] = processOptions(opts[key]);
+        return obj;
+      } else if (isDate(opts[key])) {
+        obj[key] = toDate(opts[key]);
+        return obj;
+      } else {
+        obj[key] = opts[key];
+        return obj;
+      }
+    }, {});
+  }
+
   function setElement(chart, element, dataSource, opts, callback) {
     if (typeof element === "string") {
       element = document.getElementById(element);
     }
+    opts = processOptions(opts);
     chart.element = element;
     chart.options = opts || {};
     chart.dataSource = dataSource;
