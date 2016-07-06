@@ -1293,7 +1293,7 @@
 
   function processOptions(opts) {
     return Object.keys(opts).reduce(function(obj, key) {
-      if (typeof opts[key] === "object") {
+      if (typeof opts[key] === "object" && !Array.isArray(opts[key])) {
         obj[key] = processOptions(opts[key]);
         return obj;
       } else if (typeof opts[key] === "string" && isDate(opts[key])) {
