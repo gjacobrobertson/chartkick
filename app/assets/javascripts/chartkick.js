@@ -26,12 +26,12 @@
     return variable instanceof Function;
   }
 
-  function isDate(variable) {
+  function isDateObject(variable) {
     return variable instanceof Date;
   }
 
   function isPlainObject(variable) {
-    return !isFunction(variable) && !isDate(variable) && variable instanceof Object;
+    return !isFunction(variable) && !isDateObject(variable) && variable instanceof Object;
   }
 
   // https://github.com/madrobby/zepto/blob/master/src/zepto.js
