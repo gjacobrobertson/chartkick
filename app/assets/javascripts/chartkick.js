@@ -1296,7 +1296,7 @@
       if (typeof opts[key] === "object") {
         obj[key] = processOptions(opts[key]);
         return obj;
-      } else if (isDate(opts[key])) {
+      } else if (typeof opts[key] === "string" && isDate(opts[key])) {
         obj[key] = toDate(opts[key]);
         return obj;
       } else {
